@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -5,19 +6,19 @@ pipeline {
 
         stage('Clone Code') {
             steps {
-                echo "Code is cloned automatically by Jenkins SCM"
+                echo 'Code is cloned automatically by Jenkins'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Check Python Version') {
             steps {
-                bat 'pip install -r requirements.txt'
+                bat 'python --version'
             }
         }
 
         stage('Run Python Script') {
             steps {
-                bat 'python script.py'
+                bat 'python app.py'
             }
         }
     }
