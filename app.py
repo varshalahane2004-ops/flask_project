@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -6,5 +6,12 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
+@app.route("/github-webhook/", methods=["POST"])
+def github_webhook():
+    data = request.json
+    print("GitHub Webhook Received")
+    print(data)
+    return "OK", 200
+
 if __name__ == "_main_":
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
